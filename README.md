@@ -40,7 +40,7 @@ etl.py
 >> - get songid and artistid from song and artist table using ```JOIN``` query.
 >>> 1. get song, artist and length(duration) rows from dataframe iteration.
 >>> 2. find songs from JOIN table using song, artist, length data
->>> <pre><code>
+>>> *<pre><code>
 SELECT s.song_id, a.artist_id 
 FROM songs as s JOIN artists as a ON s.artist_id = a.artist_id
 WHERE s.title = %s AND a.name = %s AND s.duration = %s;
