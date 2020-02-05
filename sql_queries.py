@@ -71,11 +71,6 @@ FROM songs as s JOIN artists as a ON s.artist_id = a.artist_id
 WHERE s.title = %s AND a.name = %s AND s.duration = %s;
 """)
 
-songplay_data_select = ("""
-SELECT start_time, user_id, level, song_id, artist_od, session_id, location, user_agent 
-FROM
-""")
-
 # QUERY LISTS
 
 create_table_queries = [songplay_table_create, user_table_create, song_table_create, artist_table_create, time_table_create]
