@@ -45,5 +45,10 @@ SELECT s.song_id, a.artist_id
 FROM songs as s JOIN artists as a ON s.artist_id = a.artist_id
 WHERE s.title = %s AND a.name = %s AND s.duration = %s;
 </code></pre>
->>>
+>>> 3.create songplay_data which insert into songplay_table.
+>>> * get index from iteration enumerated number
+>>> * get timestamp, userid, level, sessionid, location, useragent from dataframe's column
+>>> * and use songid, artistid we've got above.
+>>> <pre><code>songplay_data = (index, row.ts, row.userId, row.level, songid, artistid, row.sessionId, row.location, row.userAgent)</code></pre>
+>>> <pre><code>cur.execute(songplay_table_insert, songplay_data)</code></pre>
 
