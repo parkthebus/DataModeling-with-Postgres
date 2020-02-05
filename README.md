@@ -23,4 +23,8 @@ sql_queries.py
 > contains all sql queries (CREATE, DROP, INSERT, SELECT)
 
 etl.py
-> def process_song_file(cur, filepath)
+- process_song_file(cur, filepath)
+>> - open song file and insert song, artist data into song_table and artist_table
+>> - the inserted data is list of dataframe's specific columns at index 0.
+>> - for example. select 'song_id','title','artist_id','year','duration' columns in dataframe as df and get values into list.
+>>> ```list(df[['song_id','title','artist_id','year','duration']].values[0])```
