@@ -35,3 +35,15 @@ etl.py
 >>> * use ```dataframe.assign()``` and ```datetime```library.
 >>> * divide 1000 and convert each rows of timestamp_data('ts') in dataframe(df) to datetime using ```datetime``` library.
 >>> <pre><code>t = df.assign(ts=[datetime.datetime.fromtimestamp(ts/1000) for ts in list(df['ts'])])</code></pre>
+>> - extract timestamp, hour, day, week of year, month, year, and weekday data from timespamp converted dataframe and insert time data records into time_table.
+>> - select user information from dataframe and insert into user_table.
+>> - get songid and artistid from song and artist table using ```JOIN``` query.
+>>> 1. get song, artist and length(duration) rows from dataframe iteration.
+>>> 2. find songs from JOIN table using song, artist, length data
+>>> <pre><code>
+SELECT s.song_id, a.artist_id 
+FROM songs as s JOIN artists as a ON s.artist_id = a.artist_id
+WHERE s.title = %s AND a.name = %s AND s.duration = %s;
+</code></pre>
+>>>
+
