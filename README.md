@@ -34,3 +34,4 @@ etl.py
 >> - convert timestamp columnn to datetime
 >>> * use ```dataframe.assign()``` and ```datetime```library.
 >>> * divide 1000 and convert each rows of timestamp_data('ts') in dataframe(df) to datetime using ```datetime``` library.
+>>> <pre><code>t = df.assign(ts=[datetime.datetime.fromtimestamp(ts/1000) for ts in list(df['ts'])])</code></pre>
