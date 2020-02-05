@@ -16,4 +16,11 @@ How to start
 
 Description
 -----
+create_tables.py
+> create and drop tables
+
+sql_queries.py
+> contains all sql queries (CREATE, DROP, INSERT, SELECT)
+
+etl.py
 > def process_song_file(cur, filepath)
