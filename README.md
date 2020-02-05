@@ -52,3 +52,7 @@ WHERE s.title = %s AND a.name = %s AND s.duration = %s;
 >>> <pre><code>songplay_data = (index, row.ts, row.userId, row.level, songid, artistid, row.sessionId, row.location, row.userAgent)</code></pre>
 >>> <pre><code>cur.execute(songplay_table_insert, songplay_data)</code></pre>
 
+- process_data(cur, conn, filepath, func)
+>> - get all files matching extension from directory
+>> - get total number of files found
+>> - iterate over files and process
