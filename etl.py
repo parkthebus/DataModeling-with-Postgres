@@ -7,6 +7,17 @@ import datetime
 
 
 def process_song_file(cur, filepath):
+    """
+    This procedure processes a song file whose filepath has been provided as an arugment.
+    It extracts the song information in order to store it into the songs table.
+    Then it extracts the artist information in order to store it into the artists table.
+
+    INPUTS: 
+    * cur : the cursor variable
+    * filepath : the file path to the song file
+    
+    RETURNS: NONE
+    """
     # open song file
     df = pd.read_json(filepath, lines=True)
 
@@ -20,6 +31,19 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """
+    This procedure processes a log file whose filepath has been provided as an arugment.
+    It extracts the time information and convert to datetime datatype in order to store it into the time table.
+    Then it extracts the user information in order to store it into the users table.
+    Finally, It finds song_id and artist_id data from song and artist table by specific columns (song, artist, length).
+    Then It inserts song play record data into songplays table.
+    
+    INPUTS: 
+    * cur : the cursor variable
+    * filepath : the file path to the log file
+    
+    RETURNS: NONE
+    """
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -57,11 +81,22 @@ def process_log_file(cur, filepath):
             songid, artistid = None, None
 
         # insert songplay record
-        songplay_data = (index, row.ts, row.userId, row.level, songid, artistid, row.sessionId, row.location, row.userAgent)
+        songplay_data = (row.ts, row.userId, row.level, songid, artistid, row.sessionId, row.location, row.userAgent)
         cur.execute(songplay_table_insert, songplay_data)
 
 
 def process_data(cur, conn, filepath, func):
+    """
+    This procedure handle song/log files before processing query jobs.
+    
+    INPUTS: 
+    * cur : the cursor variable
+    * conn : the psycopg2.connect variable
+    * filepath : the file path to the song/log file
+    * func : the function that proceeding to process song/log file
+    
+    RETURNS: NONE
+    """
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -81,6 +116,9 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
+    """
+    main
+    """
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
 
